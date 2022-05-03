@@ -5,7 +5,7 @@ public class StringProviderProxy implements StringProvider {
 
     @Override
     public String gievString() {
-        this.provider = new HelloMars();
+        if (this.provider == null) this.provider = new HelloMars();
         return this.provider.gievString();
     }
 }

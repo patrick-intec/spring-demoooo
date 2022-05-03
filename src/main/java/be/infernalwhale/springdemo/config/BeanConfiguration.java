@@ -1,9 +1,6 @@
 package be.infernalwhale.springdemo.config;
 
-import be.infernalwhale.springdemo.service.AnotherSpringPrinter;
-import be.infernalwhale.springdemo.service.HelloMars;
-import be.infernalwhale.springdemo.service.StringPrinter;
-import be.infernalwhale.springdemo.service.StringProvider;
+import be.infernalwhale.springdemo.service.*;
 import org.springframework.context.annotation.*;
 
 /**
@@ -26,5 +23,19 @@ public class BeanConfiguration {
     @Bean
     public AnotherSpringPrinter anotherPrinter(StringProvider provider) {
         return new AnotherSpringPrinter(provider);
+    }
+
+    @Bean
+    @Scope("prototype")
+    @Profile("production")
+    public StringProvider provider1() {
+        return new HelloWorld();
+    }
+
+    @Bean
+    @Scope("prototype")
+    @Profile("disabledisable")
+    public StringProvider provider2() {
+        return new HelloMars();
     }
 }
